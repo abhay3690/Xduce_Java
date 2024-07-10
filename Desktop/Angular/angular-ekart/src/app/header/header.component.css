@@ -58,31 +58,6 @@ body {
     text-decoration: underline;
 }
 
-.eKart--search--bar {
-    display: flex;
-    align-items: center;
-}
-
-.eKart--search--box {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.eKart--search--btn {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    margin-left: 5px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.eKart--search--btn i {
-    font-size: 16px;
-}
-
 .eKart--search--btn:hover {
     background-color: #555;
 }
@@ -93,8 +68,7 @@ body {
     padding: 10px 20px;
     background-color: #f8f8f8;
     border-top: 1px solid #ddd;
-    margin-left: 500px;
-    padding-left: 500px;
+    
 }
 
 .eKart-menu {
