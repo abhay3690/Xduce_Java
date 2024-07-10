@@ -1,0 +1,20 @@
+
+<div class="eKart--product--container">
+    <app-search></app-search>
+
+    <img [src]="product.pImage" alt="Loading">
+    <p>Name:{{product.name}}</p>
+    <p>Price:{{product.price}}</p>
+    <p>Dicount:{{getDicountedPrice()}}</p>
+    <p>Color:{{product.color}} </p>
+    <p>{{product.inStocks>5?'only'+product.inStocks+'item left':
+        'Not in Stock'}}</p>
+    <button (click)="decrementValue()">-</button>
+    <span>{{addToCart}}</span>
+    <button (click)="incrementValue()">+</button>
+    
+    
+    <!-- <input (input)="onNameChange($event)"><br>
+     <span>{{addToCart}}</span> -->
+    
+</div>
