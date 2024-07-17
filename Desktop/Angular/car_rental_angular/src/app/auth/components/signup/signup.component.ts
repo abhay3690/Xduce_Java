@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../service/auth/auth.service';
+import {  NzMessageService } from 'ng-zorro-antd/message';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,16 +12,16 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class SignupComponent {
   isSpinning:boolean=false;
   signupForm!:FormGroup;
-  constructor(private fb:FormBuilder){ }
+  constructor(private fb:FormBuilder,
+    private authService:AuthService,
+    private message:NzMessageService ,
+    private router:Router ){ }
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.signupForm= this.fb.group({
-      name:[null,[Validators.required]],
-      email:[null,[Validators.required,Validators.email]],
-      password:[null,[Validators.required]],
-      checkpassword:[null,[Validators.required,this.conformationValidate]],
-
+      name:["",[Validators.required]],
+      email:["",[Validators.required,Validators.email]],
+      password:["",[Validators.required]],
+      checkpassword:["",[Validators.required,this.conformationValidate]],
     })
   }
   conformationValidate= (control:FormControl):{[s:string]:boolean}=>{
@@ -31,6 +34,15 @@ export class SignupComponent {
   };
   register(){
     console.log(this.signupForm.value);
+    this.authService.register(this.signupForm.value).subscribe((res)=>{
+      console.log(res);
+      if(res.id!=null){
+        this.message.success("Signup Successfully",{nzDuration:5000});
+        this.router.navigateByUrl("/login")
+      }else{
+        this.message.error("Something Went Wrong",{nzDuration:5000});
+      }
+    })
   }
 
 }
