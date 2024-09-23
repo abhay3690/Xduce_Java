@@ -8,7 +8,7 @@ import com.zosh.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 @RestController
@@ -21,8 +21,6 @@ public class ChatController{
         User reqUser = userService.findUserByJwt(jwt);
         User user2 = userService.findUserById(req.getUserId());
         Chat chats = chatService.createChat(reqUser, user2);
-//        chats.setTimestamp(LocalDateTime.now());
-        //
         jwt.compareTo(chats.getChat_name());
         return chats;
     }
