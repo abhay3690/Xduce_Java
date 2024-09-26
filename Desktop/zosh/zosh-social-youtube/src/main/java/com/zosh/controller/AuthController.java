@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/auth")
 public class AuthController {
     private final UserService userService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final CustomUserDetailsService userDetailsService;
-    @PostMapping("/auth/signup")
+    @PostMapping("/signup")
     public AuthResponse createUser(@RequestBody User user) throws Exception {
         User isExist = userRepository.findByEmail(user.getEmail());
         if (isExist != null){
@@ -48,8 +48,8 @@ public class AuthController {
 
         return res;
     }
-    @PostMapping("/auth/signin")
-    public AuthResponse signin(@RequestBody LoginRequest loginRequest){
+    @PostMapping("/signin")
+    public AuthResponse signin(@RequestBody LoginRequest loginRequest ){
         Authentication authentication = authenticate(loginRequest.getEmail(),loginRequest.getPassword());
         String token = JwtProvider.generateToken(authentication);
 
