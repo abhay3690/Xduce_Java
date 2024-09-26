@@ -53,7 +53,6 @@ public class UserController {
 
         User user = userService.findUserByJwt(jwt);
         user.setPassword(null);
-        // Add your logic to retrieve the user using the JWT token
         return user;
     }
 }

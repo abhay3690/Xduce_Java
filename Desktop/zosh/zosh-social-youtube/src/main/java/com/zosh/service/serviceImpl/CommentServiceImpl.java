@@ -26,15 +26,12 @@ public class CommentServiceImpl implements CommentService {
         User user = userService.findUserById(userId);
         Post post = postService.findPostById(postId);
         comment.setUser(user);
-        comment.setContent(comment.getContent());;
+        comment.setContent(comment.getContent());
         comment.setCreatedAt(LocalDateTime.now());
         Comment savedComment = commentRepository.save(comment);
         post.getComments().add(savedComment);
         postRepository.save(post);
         return savedComment;
-
-
-
     }
 
     @Override
