@@ -48,24 +48,24 @@ public class AuthController {
 
         return res;
     }
-    @PostMapping("/signin")
-    public AuthResponse signin(@RequestBody LoginRequest loginRequest ){
-        Authentication authentication = authenticate(loginRequest.getEmail(),loginRequest.getPassword());
-        String token = JwtProvider.generateToken(authentication);
+//    @PostMapping("/signin")
+//    public AuthResponse signin(@RequestBody LoginRequest loginRequest ){
+//        Authentication authentication = authenticate(loginRequest.getEmail(),loginRequest.getPassword());
+//        String token = JwtProvider.generateToken(authentication);
+//
+//        AuthResponse res = new AuthResponse(token,"Login Success");
+//
+//        return res;
+//    }
 
-        AuthResponse res = new AuthResponse(token,"Login Success");
-
-        return res;
-    }
-
-    private Authentication authenticate(String email, String password) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-        if (userDetails == null){
-            throw new BadCredentialsException("invalid username...");
-        }
-        if (!passwordEncoder.matches(password,userDetails.getPassword())){
-            throw new BadCredentialsException("Password not matched");
-        }
-        return new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
-    }
+//    private Authentication authenticate(String email, String password) {
+//        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+//        if (userDetails == null){
+//            throw new BadCredentialsException("invalid username...");
+//        }
+//        if (!passwordEncoder.matches(password,userDetails.getPassword())){
+//            throw new BadCredentialsException("Password not matched");
+//        }
+//        return new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+//    }
 }
